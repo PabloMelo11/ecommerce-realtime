@@ -1,19 +1,34 @@
-'use strict'
+'use strict';
 
 /** @type {import('@adonisjs/lucid/src/Schema')} */
-const Schema = use('Schema')
+const Schema = use('Schema');
 
 class CouponProductSchema extends Schema {
-  up () {
-    this.create('coupon_products', (table) => {
-      table.increments()
-      table.timestamps()
-    })
+  up() {
+    this.create('coupon_product', table => {
+      table.increments();
+      table.integer('coupon_id').unsigned();
+      table.integer('product_id').unsigned();
+      table.timestamps();
+
+      table
+        .foreign('coupon_id')
+        .references('id')
+        .inTable('coupons')
+        .onDelete('CASCADE');
+
+      table
+        .foreign('user_id')
+        .references('id')
+        .inTable('products')
+        .onDelete('CASCADE');
+      table.timestamps();
+    });
   }
 
-  down () {
-    this.drop('coupon_products')
+  down() {
+    this.drop('coupon_product');
   }
 }
 
-module.exports = CouponProductSchema
+module.exports = CouponProductSchema;
