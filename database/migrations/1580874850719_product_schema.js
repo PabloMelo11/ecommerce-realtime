@@ -7,16 +7,17 @@ class ProductSchema extends Schema {
   up() {
     this.create('products', table => {
       table.increments();
-      table.string('name');
+      table.string('name', 200);
       table.integer('image_id').unsigned();
       table.text('description');
       table.decimal('price', 12, 2);
       table.timestamps();
+
       table
         .foreign('image_id')
         .references('id')
         .inTable('images')
-        .onDelete('CASCADE');
+        .onDelete('cascade');
     });
 
     this.create('image_product', table => {
@@ -27,13 +28,13 @@ class ProductSchema extends Schema {
         .foreign('image_id')
         .references('id')
         .inTable('images')
-        .onDelete('CASCADE');
+        .onDelete('cascade');
+
       table
         .foreign('product_id')
         .references('id')
         .inTable('products')
-        .onDelete('CASCADE');
-      table.timestamps();
+        .onDelete('cascade');
     });
 
     this.create('category_product', table => {
@@ -45,15 +46,13 @@ class ProductSchema extends Schema {
         .foreign('product_id')
         .references('id')
         .inTable('products')
-        .onDelete('CASCADE');
+        .onDelete('cascade');
 
       table
         .foreign('category_id')
         .references('id')
         .inTable('categories')
-        .onDelete('CASCADE');
-
-      table.timestamps();
+        .onDelete('cascade');
     });
   }
 

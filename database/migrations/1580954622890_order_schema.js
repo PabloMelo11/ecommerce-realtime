@@ -3,32 +3,31 @@
 /** @type {import('@adonisjs/lucid/src/Schema')} */
 const Schema = use('Schema');
 
-class OrderSchema extends Schema {
+class CouponOrderSchema extends Schema {
   up() {
-    this.create('orders', table => {
+    this.create('coupon_order', table => {
       table.increments();
-      table.decimal('total', 12, 2).defaultTo(0);
-      table.integer('user_id').unsigned();
-      table.enu('status', [
-        'pending',
-        'cancelled',
-        'shipped',
-        'paid',
-        'finished',
-      ]);
+      table.integer('coupon_id').unsigned();
+      table.integer('order_id').unsigned();
+      table.decimal('discount', 12, 2).defaultTo(0.0);
       table.timestamps();
 
       table
-        .foreign('user_id')
+        .foreign('coupon_id')
         .references('id')
-        .inTable('users')
-        .onDelete('CASCADE');
+        .inTable('coupons')
+        .onDelete('cascade');
+      table
+        .foreign('order_id')
+        .references('id')
+        .inTable('orders')
+        .onDelete('cascade');
     });
   }
 
   down() {
-    this.drop('orders');
+    this.drop('coupon_order');
   }
 }
 
-module.exports = OrderSchema;
+module.exports = CouponOrderSchema;

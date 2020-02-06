@@ -7,8 +7,8 @@ class CategorySchema extends Schema {
   up() {
     this.create('categories', table => {
       table.increments();
-      table.string('title');
-      table.string('description');
+      table.string('title', 100);
+      table.string('description', 255);
       table.integer('image_id').unsigned();
       table.timestamps();
 
@@ -16,7 +16,7 @@ class CategorySchema extends Schema {
         .foreign('image_id')
         .references('id')
         .inTable('images')
-        .onDelete('CASCADE');
+        .onDelete('cascade');
     });
   }
 

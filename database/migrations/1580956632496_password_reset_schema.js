@@ -12,14 +12,16 @@ class PasswordResetSchema extends Schema {
         .string('token')
         .notNullable()
         .unique();
+
       table.dateTime('expires_at');
+
       table.timestamps();
 
       table
         .foreign('email')
         .references('email')
         .inTable('users')
-        .onDelete('CASCADE');
+        .onDelete('cascade');
     });
   }
 
