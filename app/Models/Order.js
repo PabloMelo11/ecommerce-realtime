@@ -8,7 +8,7 @@ class Order extends Model {
     super.boot();
 
     this.addHook('afterFind', 'OrderHook.updateValues');
-    this.addHook('afterPaginate', 'OrderHook.updateCollectionValues');
+    this.addHook('afterPaginate', 'OrderHook.updateCollectionsValues');
   }
 
   items() {
