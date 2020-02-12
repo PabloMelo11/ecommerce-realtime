@@ -16,8 +16,14 @@
   },
   "rules": {
     "prettier/prettier": "error",
+    "no-console": "off",
     "class-methods-use-this": "off",
     "consistent-return": "off",
-    "no-param-reassign": "off"
+    "no-param-reassign": "off",
+    "camelcase": "off",
+    "no-undef": "off",
+    "no-multi-assign": "off",
+    "no-await-in-loop": "off",
+    "no-restricted-syntax": "off"
   }
 }
