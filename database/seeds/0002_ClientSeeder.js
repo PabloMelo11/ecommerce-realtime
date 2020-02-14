@@ -29,8 +29,8 @@ class ClientSeeder {
       email: 'pablo@pisystem.com.br',
       password: 'secret',
     });
-    await Role.findBy('slug', 'admin');
-    await user.roles().attach([role.id]);
+    const adminRole = await Role.findBy('slug', 'admin');
+    await user.roles().attach([adminRole.id]);
   }
 }
 

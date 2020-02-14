@@ -13,7 +13,7 @@ class RoleSeeder {
   async run() {
     await Role.create({
       name: 'Admin',
-      skug: 'admin',
+      slug: 'admin',
       description: 'Administrador do sistema',
     });
 

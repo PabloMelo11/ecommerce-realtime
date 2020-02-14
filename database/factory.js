@@ -28,7 +28,7 @@ Factory.blueprint('App/Models/Category', faker => {
   };
 });
 
-Faker.blueprint('App/Models/Product', faker => {
+Factory.blueprint('App/Models/Product', faker => {
   return {
     name: faker.animal(),
     description: faker.sentence(),
