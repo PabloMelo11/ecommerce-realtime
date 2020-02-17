@@ -6,24 +6,14 @@ class Product extends Model {
     return this.belongsTo('App/Models/Image');
   }
 
-  /**
-   * Relacionamento entre produtos e images
-   * Galeria de imagens do produto
-   */
   images() {
     return this.belongsToMany('App/Models/Image');
   }
 
-  /**
-   * Relacionamento entre produtos e categorias
-   */
   categories() {
     return this.belongsToMany('App/Models/Category');
   }
 
-  /**
-   * Relacionamento entre produto e coupon
-   */
   coupons() {
     return this.belongsToMany('App/Models/Coupon');
   }
