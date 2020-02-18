@@ -23,3 +23,8 @@ require('./auth');
  * Importa as rotas de admin
  */
 require('./admin');
+
+/**
+ * Importa as rotas dos clientes
+ */
+require('./client');
