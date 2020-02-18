@@ -18,3 +18,8 @@
  * Importa as rotas de autenticacao
  */
 require('./auth');
+
+/**
+ * Importa as rotas de admin
+ */
+require('./admin');
