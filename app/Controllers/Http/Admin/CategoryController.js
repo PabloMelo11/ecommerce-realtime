@@ -16,11 +16,16 @@ class CategoryController {
    * @param {Response} ctx.response
    * @param {View} ctx.view
    */
-  async index({ response, pagination }) {
-    const categories = await Category.query().paginate(
-      pagination.page,
-      pagination.limit
-    );
+  async index({ request, response, pagination }) {
+    const title = request.input('title');
+
+    const query = Category.query();
+
+    if (title) {
+      query.where('title', 'ILIKE', `%${title}%`);
+    }
+
+    const categories = await query.paginate(pagination.page, pagination.limit);
 
     return response.json(categories);
   }
