@@ -5,9 +5,9 @@ const Route = use('Route');
  * Auth Routes
  */
 Route.group(() => {
-  Route.post('register', 'AuthController.register ').as('auth.register');
+  Route.post('register', 'AuthController.register').as('auth.register');
   Route.post('login', 'AuthController.login').as('auth.login');
-  Route.post('refresh', 'AuthController.refrash').as('auth.refrash');
+  Route.post('refresh', 'AuthController.refresh').as('auth.refresh');
   Route.post('logout', 'AuthController.logout').as('auth.logout');
 
   // restore password routes
