@@ -38,7 +38,24 @@ class ProductController {
    * @param {Request} ctx.request
    * @param {Response} ctx.response
    */
-  async store({ request, response }) {}
+  async store({ request, response }) {
+    try {
+      const { name, description, price, image_id } = request.all();
+
+      const product = await Product.create({
+        name,
+        description,
+        price,
+        image_id,
+      });
+
+      return response.status(201).json(product);
+    } catch (error) {
+      return response
+        .status(400)
+        .json({ error: "Don't possible create this product" });
+    }
+  }
 
   /**
    * Display a single category.
