@@ -2,6 +2,8 @@
 /** @typedef {import('@adonisjs/framework/src/Response')} Response */
 /** @typedef {import('@adonisjs/framework/src/View')} View */
 
+const Product = use('App/Models/Product');
+
 /**
  * Resourceful controller for interacting with categories
  */
@@ -15,7 +17,18 @@ class ProductController {
    * @param {Response} ctx.response
    * @param {View} ctx.view
    */
-  async index({ request, response, view }) {}
+  async index({ request, response, pagination }) {
+    const name = request.input('name');
+    const query = Product.query();
+
+    if (name) {
+      query.where('name', 'ILIKE', `%${name}%`);
+    }
+
+    const products = await query.paginate(pagination.page, pagination.limit);
+
+    return response.json(products);
+  }
 
   /**
    * Create/save a new category.
