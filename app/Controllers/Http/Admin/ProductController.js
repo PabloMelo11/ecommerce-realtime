@@ -66,7 +66,7 @@ class ProductController {
    * @param {Response} ctx.response
    * @param {View} ctx.view
    */
-  async show({ params: { id }, request, response }) {
+  async show({ params: { id }, response }) {
     const product = await Product.findOrFail(id);
 
     return response.json(product);
@@ -106,7 +106,19 @@ class ProductController {
    * @param {Request} ctx.request
    * @param {Response} ctx.response
    */
-  async destroy({ params, request, response }) {}
+  async destroy({ params: { id }, request, response }) {
+    const product = await Product.findOrFail(id);
+
+    try {
+      await product.delete();
+
+      return response.status(204).json();
+    } catch (err) {
+      return response
+        .status(500)
+        .json({ error: 'Nao foi possivel deletar esse produto' });
+    }
+  }
 }
 
 module.exports = ProductController;
